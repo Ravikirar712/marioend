@@ -22,7 +22,6 @@ function preload(){
   "images/tur2.png","images/tur3.png","images/tur4.png",
   "images/tur5.png",);
 
- // jumpSound = loadSound("sounds/jump.mp3");
   mario_collided = loadAnimation("images/dead.png");
   
   dieSound = loadSound("sounds/dieSound.mp3");
