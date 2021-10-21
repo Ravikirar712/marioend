@@ -54,7 +54,11 @@ function setup() {
 }
 
 function draw() {
- 
+ if (gameState==="PLAY")
+{
+
+
+
    //scroll background 
   if (bg.x < 100){
     bg.x=bg.width/4;
@@ -107,18 +111,36 @@ function draw() {
 
       //call the function to generate Obstacles
       generateObstacles();
+     if(obstaclesGroup.isTouching(mario)){
+       dieSound.play();
+       gameState="END";
+     }
+    }
 
-   
+    else if (gameState==="END"){
+      bg.velocityX=0;
+      mario.velocityX=0;
+      mario.velocityY=0;
+      mario.changeAnimation("collided",mario_collided);
+      bricksGroup.setVelocityXEach(0);
+      coinsGroup.setVelocityXEach(0);
+      obstaclesGroup.setVelocityXEach(0);
+      bricksGroup.setLifetimeEach(-1);
+      coinsGroup.setLifetimeEach(-1);
+      obstaclesGroup.setLifetimeEach(-1);
+      mario.setCollider("rectangle",0,0,300,10);
+      mario.debug=true;
+      mario.y=550;
+    }
     //prevent Mario from falling down due to gravity
   mario.collide(ground);
-
+ 
   //draw sprites on screen
   drawSprites();
   textSize(20);
   fill("brown");
   //display score
   text("Coins Collected: "+ coinScore, 500,50);
-  
 }
 
 
