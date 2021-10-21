@@ -72,7 +72,7 @@ function draw() {
     mario.y=50;
   }
 //jump with space
-  if(keyDown("space") ) {
+  if(keyDown("touch") ) {
     mario.velocityY = -16;
   }
   //gravity
